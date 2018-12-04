@@ -1,28 +1,61 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { handleInitialData } from './actions/shared';
+import {
+    BrowserRouter as Router,
+    Route,
+    Link,
+    Redirect,
+    withRouter
+} from "react-router-dom";
+import HomePage from './pages/HomePage'
+import NewSubscriber from './pages/NewSubscriber'
+import SubscriberPage from './pages/SubscriberPage'
+import { connect } from 'react-redux';
+import LoadingBar from 'react-redux-loading';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+class App extends React.Component {
+
+    constructor(props){
+        super(props);
+        //console.log(props);
+    }
+
+    componentDidMount () {
+        this.props.dispatch(handleInitialData());
+    }
+    render () {
+        return (
+          <Router>
+            <div>
+              <LoadingBar/>
+              {
+                this.props.loading===true
+                ?<h1>Loading</h1>
+                :<div>
+                  <Route path="/" exact component={HomePage} />
+                  <Route path="/new_subscriber" exact component={NewSubscriber} />
+                  <Route path="/subscriber/:id" exact component={SubscriberPage} />
+                </div>
+              }
+            </div>
+          </Router>
+        )
+    }
+}
+
+function isEmpty(obj) {
+  for(var key in obj) {
+      if(obj.hasOwnProperty(key))
+          return false;
+  }
+  return true;
+}
+function mapStateToProps({subscribers}) {
+  //console.log(isEmpty(authedUser))
+  return {
+    subscribers,
+    loading:isEmpty(subscribers)
   }
 }
 
-export default App;
+export default connect(mapStateToProps)(App);
