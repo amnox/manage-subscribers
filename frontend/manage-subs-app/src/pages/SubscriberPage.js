@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { handleUpdateSubscriber } from '../actions/subscribers'
 import SubscriberFields from '../components/SubscriberFields';
+import '../styles/subscriber.css';
 
 class SubscribePage extends React.Component {
   constructor(props){
@@ -91,24 +92,26 @@ class SubscribePage extends React.Component {
       <div>
         <Nav/>
         <h1>Subscriber Page</h1>
-        <div>
+        <div className="container subz-boxx">
           <h1>Details</h1>
-          <input type="button" value="Edit" onClick={this.enableEditing}/>
-          <div>
-              <div>{subscriber_onpage.id}</div>
-              <label>
+          <div className="edit-button-wrapper">
+          <input className="edit-details" type="button" value="Edit" onClick={this.enableEditing}/>
+          </div>
+          <div className="detail-wrapper">
+              <label className="detail-item">
                 Email:
                 <input type="text" name="email" disabled={!this.state.edit_enabled} value = { this.state.email } onChange = {(e)=>this.handleChange("email",e)}/>
               </label>
-              <label>
+              <label className="detail-item">
                 Name:
                 <input type="text" name="name" disabled={!this.state.edit_enabled} value = { this.state.name } onChange = {(f)=>this.handleChange("name",f)}/>
               </label>
-              <label>
+              <label className="detail-item">
                 Address:
                 <input type="text" name="address" disabled={!this.state.edit_enabled} value = { this.state.address } onChange = {(g)=>this.handleChange("address",g)}/>
               </label>
-              <select value={this.state.state} onChange={(h) => this.handleChange("state", h)} disabled={!this.state.edit_enabled}>
+              <label> Status: 
+              <select  value={this.state.state} onChange={(h) => this.handleChange("state", h)} disabled={!this.state.edit_enabled}>
                 {options.map((element) => {
                   if(subscriber_onpage.state == element){
                     return <option key={element}>{element}</option>
@@ -118,7 +121,10 @@ class SubscribePage extends React.Component {
                   
                 })}
               </select>
-              <input type="button" hidden={!this.state.edit_enabled} onClick={this.sendUpdate}/>
+              </label>
+              <div className="edit-button-wrapper">
+              <input className="submit-details" type="button" hidden={!this.state.edit_enabled} onClick={this.sendUpdate} value="submit"/>
+              </div>
             </div>
             <SubscriberFields subscriber_id={subscriber_onpage.id}/>
         </div>

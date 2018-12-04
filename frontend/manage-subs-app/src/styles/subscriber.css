@@ -1,0 +1,62 @@
+.subz-boxx{
+    width: 90%;
+    float: left;
+    margin: auto;
+    display: block;
+    border:1px solid;
+    border-color:#cccccc;
+    border-radius: 5%;
+    padding: 2%;
+}
+
+.edit-details{
+float: right;}
+
+.edit-button-wrapper{
+    width: 100%;
+    display: block;
+    float: left;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.submit-details{
+    width: 40%;
+    float: none;
+    margin: auto;
+}
+
+.detail-wrapper {
+    float: left;
+    width: 100%;
+    display: block;
+}
+
+.detail-item{
+    float: left;
+    width: 100%;
+    margin-bottom: 2%
+}
+.detail-item > input {
+    width: 100%;
+}
+
+.fields-wrapper{
+    display: block;
+    float: none;
+    margin: auto;
+    width: 90%;
+}
+
+.field-item{
+    margin: 2%;
+    border: 1px solid;
+    padding: 1%;
+    border-radius:2%;
+    border-color: #cccccc;
+}
+
+.field-button {
+    float: right;
+}
+

@@ -3,6 +3,7 @@ import Nav from '../components/Nav'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { handleCreateSubscriber } from '../actions/subscribers'
+import '../styles/newsub.css';
 
 class NewSubscriber extends React.Component {
   constructor(props){
@@ -73,21 +74,22 @@ class NewSubscriber extends React.Component {
   render() {
     const options = ['','active', 'unsubscribed', 'junk', 'bounced', 'unconfirmed']
     return (
-      <div>
+      <div >
         <Nav/>
-        <div>
-          <label>
+        <div className="container">
+          <label className = "sub-market">
             Email:
             <input type="text" name="email" value = { this.state.email } onChange = {(e)=>this.handleChange("email",e)}/>
           </label>
-          <label>
+          <label className = "sub-market">
             Name:
             <input type="text" name="name" value = { this.state.name } onChange = {(f)=>this.handleChange("name",f)}/>
           </label>
-          <label>
+          <label className = "sub-market">
             Address:
             <input type="text" name="address" value = { this.state.address } onChange = {(g)=>this.handleChange("address",g)}/>
           </label>
+          <label className = "sub-market">Select one:
           <select value={this.state.state} onChange={(h) => this.handleChange("state", h)}>
             {options.map((element) => {
                 return <option key={element}>{element}</option>
@@ -95,7 +97,8 @@ class NewSubscriber extends React.Component {
               
             )}
           </select>
-          <input type="button" onClick={this.sendUpdate}/>
+          </label>
+          <input className = "sub-button" value="submit" type="button" onClick={this.sendUpdate}/>
         </div>
       </div>
     )

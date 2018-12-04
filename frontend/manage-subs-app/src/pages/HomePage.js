@@ -24,12 +24,15 @@ class HomePage extends Component {
     }
 
     render () {
+        var homeClass = classNames({
+            'home':true
+          });
         //console.log(questionList)
         return (
 
-            <div id="home">
+            <div id="home" className = {homeClass}>
                 <Nav/>
-                <h1>Welcome Back</h1>
+                <h1 className = "welcome">Welcome Back</h1>
                 <div>
                     <SubscriberList openSubscriber = {this.openSubscriber}/>
                 </div>

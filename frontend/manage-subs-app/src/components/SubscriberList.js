@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+import classNames from 'classnames';
 
 class SubscriberList extends React.Component {
     constructor(props){
@@ -15,14 +16,14 @@ class SubscriberList extends React.Component {
     render() {
         const { subscribers } =  this.props
         return(
-            <div>
+            <div className="container">
                 {
                     Object.keys(subscribers).map((it)=>(
-                        <div key = {subscribers[it].id} onClick={()=>this.openSubscriber(subscribers[it].id)}>
-                            <div>{subscribers[it].email}</div>
-                            <div>{subscribers[it].name}</div>
-                            <div>{subscribers[it].address}</div>
-                            <div>{subscribers[it].state}</div>
+                        <div className="subz_item" key = {subscribers[it].id} onClick={()=>this.openSubscriber(subscribers[it].id)}>
+                            <div><b>Email: </b>{subscribers[it].email}</div>
+                            <div><b>Name: </b>{subscribers[it].name}</div>
+                            <div><b>Address: </b>{subscribers[it].address}</div>
+                            <div><b>State: </b>{subscribers[it].state}</div>
                         </div>
                     ))
                 }

@@ -147,8 +147,8 @@ export default class SubscriberFields extends React.Component {
     const options = ['date', 'number', 'string', 'boolean']
     
     return (
-      <div>
-        <button onClick={this.addField}>Add Field</button>
+      <div className="fields-wrapper">
+        <button className="create-field" onClick={this.addField}>Add Field</button>
       {
         this.state.fields == null
           ? (
@@ -159,14 +159,16 @@ export default class SubscriberFields extends React.Component {
                 {
                   fields.map((it)=>{
                     return(
-                      <div key={it.id}>
-                        <p>{it.title}</p>
+                      <div key={it.id} className='field-item'>
+                        <p><b>Title: </b>{it.title}</p>
+                        <label> <b>Type:</b>
                         <select value={it.type} disabled={true}>
                           {options.map((element) => {
                             return <option key={element}>{element}</option>
                           })}
                         </select>
-                        <button onClick={(e)=>this.openModal(it,e)}>Open Modal</button>
+                        </label>
+                        <button className="field-button" onClick={(e)=>this.openModal(it,e)}>Edit Field</button>
                       </div>
                     )
                     
