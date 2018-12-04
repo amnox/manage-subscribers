@@ -38,11 +38,14 @@ export function deleteSubscriber(id) {
 
 export function handleCreateSubscriber (subscriber) {
     return (dispatch) => {
+        dispatch(showLoading())
         return createSubscriberAPI(subscriber)
             .then(() => {
                 dispatch(createSubscriber(subscriber))
+                dispatch(hideLoading())
             })
             .catch((e) => {
+                dispatch(hideLoading())
                 console.warn('error in handling answer', e);
                 alert('Error Creating Subscriber')
             })

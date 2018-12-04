@@ -11,6 +11,7 @@ class SubscriberController extends Controller
     public function __construct()
     {
         $this->middleware('checkdomain', ['only' => ['store','update']]);
+        //$this->middleware('cors');
     }
 
     /**
@@ -132,12 +133,7 @@ class SubscriberController extends Controller
             $subscriber->published_at = request('published_at');
         }
         $subscriber->save();
-        /*$subscriber->name = $request->name;
-        $subscriber->email = $request->email;
-        $subscriber->address = $request->address;
-        $subscriber->state = $request->state;*/
 
-        //$subscriber->save();
         return $subscriber;
     }
 

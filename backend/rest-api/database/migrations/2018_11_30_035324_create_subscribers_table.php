@@ -21,7 +21,7 @@ class CreateSubscribersTable extends Migration
             $table->enum('state', ['active', 'unsubscribed', 'junk', 'bounced', 'unconfirmed']);
             $table->timestamps();
         });
-    }
+    }  
 
     /**
      * Reverse the migrations.

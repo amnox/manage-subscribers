@@ -58,10 +58,20 @@ export function createSubscriberAPI(data){
         body: formData
     })
     .then(response => {
+      if(!response.ok){
+        
+        throw response
+      }
       data = response.json()
       return {[data.id]:data}
     })
-    .catch(error => {return error} )
+    .catch(error => {
+      const res = error.json().then((dat)=>{
+        console.log(dat)
+        alert(dat.message)
+      })
+      
+    } )
 }
 
 export function createFieldAPI(data){
@@ -71,15 +81,17 @@ export function createFieldAPI(data){
         body: JSON.stringify({
           'title': data.title,
           'type': data.type,
+          'subscriber_id': data.subscriber_id
         }),
         headers: {
           "Content-Type": "application/json; charset=utf-8",
           //"Content-Type": "application/x-www-form-urlencoded",
         }
     })
-    .then(response => {
-      data = response.json()
-      return {[data.id]:data}
+    .then((resp) => resp.json()) 
+    .then((resp) => {
+      alert("Field Created")
+      return resp
     })
     .catch(error => {return error} )
 }

@@ -117,9 +117,6 @@ class FieldController extends Controller
         }
         $field->save();
 
-        $field->title = $request->title;
-        $field->type = $request->type;
-        $field->subscriber_id = $request->subscriber_id;
         $field->save();
 
         return $field;

@@ -24,6 +24,7 @@ export default class SubscriberFields extends React.Component {
     this.closeModal = this.closeModal.bind(this);
     this.handleChange = this.handleChange.bind(this)
     this.sendFieldUpdate = this.sendFieldUpdate.bind(this)
+    this.sendFieldCreate = this.sendFieldCreate.bind(this)
     this.addField = this.addField.bind(this)
     this.state = {
       fields: null,
@@ -31,8 +32,8 @@ export default class SubscriberFields extends React.Component {
       createModalIsOpen:false,
       field_now : null,
       field_new : {
-        title:null,
-        type:null
+        title:'',
+        type:'date'
       }
     }
   }
@@ -43,7 +44,13 @@ export default class SubscriberFields extends React.Component {
 
   sendFieldCreate(){
     const { title, type } = this.state.field_new
-
+    createFieldAPI({
+      title,
+      type,
+      subscriber_id:this.props.subscriber_id
+    }).then(()=>{
+      this.getFields(this.props.subscriber_id)
+    })
   }
 
   sendFieldUpdate() {

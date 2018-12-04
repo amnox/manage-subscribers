@@ -15,7 +15,14 @@ class CheckDomain
      */
     public function handle($request, Closure $next)
     {
+        if($request->method()==='OPTIONS'){
+            return $next($request);
+        }
+        
         $email = $request->email;
+        if ($email === ""){
+            return $next($request);
+        }
         $domain_name = 'http://' . substr(strrchr($email, "@"), 1);
 
         $client = new \GuzzleHttp\Client();
