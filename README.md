@@ -14,6 +14,7 @@ This a subscriber management application made using Laravel and React.js, the ap
 
 ### Backend
 - Switch to backend directory
+- Create database.sqlite file in database/ directory
 - Run Composer Install
 - generate key `php artisan key:generate`
 - Run Migrations `php artisan migrate`
